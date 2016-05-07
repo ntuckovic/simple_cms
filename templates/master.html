@@ -43,9 +43,8 @@
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                         {% endcomment %}
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{% url 'authoring:logout' %}">Logout</a></li>
-                        </ul>
+                        {% block header_right %}
+                        {% endblock header_right %}
                     </div><!--/.nav-collapse -->
                 </div>
             </nav>

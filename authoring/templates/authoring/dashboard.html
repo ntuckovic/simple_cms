@@ -1,5 +1,11 @@
 {% extends 'master.html' %}
 
+{% block header_right %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'authoring:logout' %}">Logout</a></li>
+    </ul>
+{% endblock header_right %}
+
 {% block main_content %}
     This is Dashboard!
 {% endblock main_content %}
