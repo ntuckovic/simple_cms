@@ -1,5 +1,13 @@
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+{% extends 'master.html' %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <form class="login-form" action="{% url 'authoring:login' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+{% endblock main_content %}
