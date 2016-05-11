@@ -18,7 +18,7 @@ class UserProfile(GenderMixin, NameMixin, models.Model):
         on_delete=models.CASCADE
     )
     avatar = models.ImageField(
-        verbose_name=_('Avatar'), blank=True)
+        verbose_name=_('Avatar'), blank=True, upload_to='avatars/')
     can_comment = models.BooleanField(
         verbose_name=_('Can comment'), default=True)
     can_login = models.BooleanField(verbose_name=_('Can login'), default=True)
