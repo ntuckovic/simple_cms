@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     'authoring',
     'content',
+    'users',
 ]
 
 MIDDLEWARE_CLASSES = [

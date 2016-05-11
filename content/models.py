@@ -3,29 +3,19 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from model_utils import Choices
-
+from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
+from simple_cms.mixins.models import GenderMixin, NameMixin
 
-class Author(models.Model):
-    GENDERS = Choices(
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
 
-    first_name = models.CharField(max_length=350)
-    last_name = models.CharField(max_length=350)
-    gender = models.CharField(max_length=1, choices=GENDERS)
-
-    @property
-    def full_name(self):
-        return '{0} {1}'.format(self.first_name, self.last_name)
-
+@python_2_unicode_compatible
+class Author(GenderMixin, NameMixin, models.Model):
     def __str__(self):
         return self.full_name
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     title = models.CharField(max_length=350)
     parent = models.ForeignKey(
@@ -40,6 +30,7 @@ class Category(models.Model):
         verbose_name_plural = _('Categories')
 
 
+@python_2_unicode_compatible
 class Tag(models.Model):
     title = models.CharField(max_length=350)
     is_active = models.BooleanField(default=True)
@@ -48,6 +39,7 @@ class Tag(models.Model):
         return self.title
 
 
+@python_2_unicode_compatible
 class Article(models.Model):
     created_date = models.DateTimeField(
         verbose_name=_('Created on'), auto_now_add=True)
