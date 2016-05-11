@@ -13,7 +13,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 
 from django.views.generic import FormView, RedirectView, ListView, TemplateView
- 
+
+from content.models import Article
+
 
 class LoginView(FormView):
     template_name = 'authoring/login.html'
@@ -63,3 +65,9 @@ class AutoringLoginRequiredMixin(LoginRequiredMixin):
 
 class DashboardView(AutoringLoginRequiredMixin, TemplateView):
     template_name = 'authoring/dashboard.html'
+
+
+class ArticlesListView(ListView):
+    template_name = 'authoring/articles_list.html'
+    model = Article
+    paginate_by = 20
