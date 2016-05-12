@@ -2,17 +2,10 @@
 
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.six import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-
-from simple_cms.mixins.models import GenderMixin, NameMixin
-
-
-@python_2_unicode_compatible
-class Author(GenderMixin, NameMixin, models.Model):
-    def __str__(self):
-        return self.full_name
 
 
 @python_2_unicode_compatible
@@ -46,8 +39,12 @@ class Article(models.Model):
     last_change = models.DateTimeField(
         verbose_name=_('Last change'), auto_now=True)
     title = models.CharField(max_length=350)
-    authors = models.ManyToManyField(
-        Author, verbose_name=_('Authors'), blank=True)
+    author = models.ForeignKey(
+        User,
+        verbose_name=_('Author'),
+        related_name='author',
+        on_delete=models.CASCADE
+    )
     content = models.TextField(default='', blank=True)
     published = models.BooleanField(default=False)
     category = models.ForeignKey(
@@ -57,10 +54,6 @@ class Article(models.Model):
     @property
     def has_been_modified(self):
         return self.created_date != self.last_change
-
-    @property
-    def authors_string(self):
-        return ", ".join([author.full_name for author in self.authors.all()])
 
     def __str__(self):
         return self.title

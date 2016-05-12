@@ -89,3 +89,8 @@ class ArticleUpdateView(AuthorDetailMixin, UpdateView):
 
 class ArticleCreateView(AuthorDetailMixin, CreateView):
     template_name = 'authoring/article_detail_new.html'
+
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.author = user
+        return super(ArticleCreateView, self).form_valid(form)
