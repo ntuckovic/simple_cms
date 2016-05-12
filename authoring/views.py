@@ -6,13 +6,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import REDIRECT_FIELD_NAME, \
     login as auth_login, logout as auth_logout
-
+from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 
 from django.views.generic import FormView, RedirectView, ListView, TemplateView
+from django.views.generic.edit import UpdateView
 
 from content.models import Article
 
@@ -71,3 +72,12 @@ class ArticlesListView(ListView):
     template_name = 'authoring/articles_list.html'
     model = Article
     paginate_by = 20
+
+
+class ArticleUpdateView(UpdateView):
+    fields = ['title', 'content', 'published', 'category', 'tags']
+    template_name = 'authoring/article_detail.html'
+    model = Article
+
+    def get_success_url(self):
+        return reverse('authoring:articles_list', args=[1])

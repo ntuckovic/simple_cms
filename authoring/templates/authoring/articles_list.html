@@ -1,25 +1,33 @@
 {% extends 'authoring/dashboard.html' %}
 
 {% block main_content %}
-    <div class="col-md-12">
+    <div class="{% block main_col_class %}col-md-8 col-md-offset-2{% endblock main_col_class %}">
         <div class="row">
-            <h2>Articles</h2>
+            <div class="col-md-12">
+                <h2>{% block heading %}Articles{% endblock heading %}</h2>
+            </div>
         </div>
         <div class="row">
-            <div class="table-responsive">
-                <table class="table">
-                    {% for article in object_list %}
-                    <tr>
-                        <td>
-                            {{ article.title }}
-                        </td>
-                        <td>
-                            {{ article.published }}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>    
+            <div class="col-md-12">
+            {% block content %}
+                <div class="table-responsive">
+                    <table class="table">
+                        {% for article in object_list %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'authoring:articles_update' article.id %}">
+                                    {{ article.title }}
+                                </a>
+                            </td>
+                            <td>
+                                {{ article.published }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div> 
+            {% endblock content %}
+            </div>   
         </div>
     </div>
 {% endblock main_content %}

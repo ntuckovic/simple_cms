@@ -1,0 +1,16 @@
+{% extends 'authoring/articles_list.html' %}
+
+{% load bootstrap %}
+
+{% block heading %}
+Article: {{ object.title }}, ID: {{ object.id }}
+{% endblock heading %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        {{ form|bootstrap }}
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock content %}
