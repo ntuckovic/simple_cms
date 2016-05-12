@@ -12,7 +12,8 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 
-from django.views.generic import FormView, RedirectView, ListView, TemplateView
+from django.views.generic import FormView, RedirectView, ListView, \
+    TemplateView, CreateView
 from django.views.generic.edit import UpdateView
 
 from content.models import Article
@@ -74,10 +75,17 @@ class ArticlesListView(ListView):
     paginate_by = 20
 
 
-class ArticleUpdateView(UpdateView):
+class AuthorDetailMixin(object):
     fields = ['title', 'content', 'published', 'category', 'tags']
-    template_name = 'authoring/article_detail.html'
     model = Article
 
     def get_success_url(self):
         return reverse('authoring:articles_list', args=[1])
+
+
+class ArticleUpdateView(AuthorDetailMixin, UpdateView):
+    template_name = 'authoring/article_detail.html'
+
+
+class ArticleCreateView(AuthorDetailMixin, CreateView):
+    template_name = 'authoring/article_detail_new.html'

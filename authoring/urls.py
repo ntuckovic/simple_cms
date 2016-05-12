@@ -2,7 +2,7 @@
 
 from django.conf.urls import url
 from .views import LoginView, LogoutView, DashboardView, ArticlesListView, \
-    ArticleUpdateView
+    ArticleUpdateView, ArticleCreateView
 
 
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
         ArticlesListView.as_view(), name='articles_list'),
     url(r'^articles/update/(?P<pk>[0-9]+)/$',
         ArticleUpdateView.as_view(), name='articles_update'),
+    url(r'^articles/create/$',
+        ArticleCreateView.as_view(), name='articles_create'),
 ]
