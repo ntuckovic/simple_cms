@@ -7,11 +7,27 @@
 {% endblock header_right %}
 
 {% block main_content %}
-    <div class="col-md-24">
-        <div class="col-md-12">
-            <a href="{% url 'authoring:articles_list' page=1 %}">
-                Articles List
-            </a>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li>
+                        <a href="{% url 'authoring:articles_list' page=1 %}">
+                            Articles
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'authoring:tags_list' page=1 %}">
+                            Tags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'authoring:categories_list' page=1 %}">
+                            Categories
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock main_content %}
