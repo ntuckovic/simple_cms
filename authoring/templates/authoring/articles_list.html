@@ -3,8 +3,15 @@
 {% block main_content %}
     <div class="{% block main_col_class %}col-md-8 col-md-offset-2{% endblock main_col_class %}">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <h2>{% block heading %}Articles{% endblock heading %}</h2>
+            </div>
+            <div class="col-md-4">
+                {% block actions %}
+                    <a href="{% url 'authoring:articles_create' %}" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-plus"></span> New Article
+                    </a>
+                {% endblock actions %}
             </div>
         </div>
         <div class="row">
@@ -20,7 +27,11 @@
                                 </a>
                             </td>
                             <td>
-                                {{ article.published }}
+                                {% if article.published %}
+                                    <span class="glyphicon glyphicon-ok-sign text-success"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-minus-sign text-warning"></span>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}

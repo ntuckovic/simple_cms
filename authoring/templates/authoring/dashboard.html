@@ -7,5 +7,11 @@
 {% endblock header_right %}
 
 {% block main_content %}
-    This is Dashboard!
+    <div class="col-md-24">
+        <div class="col-md-12">
+            <a href="{% url 'authoring:articles_list' page=1 %}">
+                Articles List
+            </a>
+        </div>
+    </div>
 {% endblock main_content %}
