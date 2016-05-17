@@ -1,0 +1,32 @@
+{% extends 'authoring/articles_list.html' %}
+
+{% block heading %}Tags{% endblock heading %}
+
+{% block actions %}
+    <a href="{% url 'authoring:tags_create' %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-plus"></span> New Tag
+    </a>
+{% endblock actions %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            {% for tag in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'authoring:tags_update' tag.id %}">
+                        {{ tag.title }}
+                    </a>
+                </td>
+                <td>
+                    {% if tag.is_active %}
+                        <span class="glyphicon glyphicon-ok-sign text-success"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-minus-sign text-warning"></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div> 
+{% endblock content %}

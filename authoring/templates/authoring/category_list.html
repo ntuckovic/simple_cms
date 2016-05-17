@@ -1,0 +1,32 @@
+{% extends 'authoring/articles_list.html' %}
+
+{% block heading %}Categories{% endblock heading %}
+
+{% block actions %}
+    <a href="{% url 'authoring:categories_create' %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-plus"></span> New Category
+    </a>
+{% endblock actions %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table">
+            {% for category in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'authoring:categories_update' category.id %}">
+                        {{ category.title }}
+                    </a>
+                </td>
+                <td>
+                    {% if category.parent %}
+                        {{ category.parent }}
+                    {% else %}
+                        ----
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div> 
+{% endblock content %}
