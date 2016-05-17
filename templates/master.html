@@ -29,7 +29,9 @@
                             <span class="icon-bar"></span>
                         </button>
                         {% endcomment %}
-                        <a class="navbar-brand" href="#">Simple CMS</a>
+                        {% block header_left %}
+                            <a class="navbar-brand" href="#">Simple CMS</a>
+                        {% endblock header_left %}
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         {% comment %}

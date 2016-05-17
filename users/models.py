@@ -9,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from simple_cms.mixins.models import GenderMixin, NameMixin
 
+from content.models import Category
+
 
 @python_2_unicode_compatible
 class UserProfile(GenderMixin, NameMixin, models.Model):
@@ -32,6 +34,8 @@ class UserProfile(GenderMixin, NameMixin, models.Model):
         verbose_name=_('Postal code'), max_length=10, blank=True, default='')
     country = models.CharField(
         verbose_name=_('Country'), max_length=100, blank=True, default='')
+    favorite_categories = models.ManyToManyField(
+        Category, verbose_name=_('Favorite Categories'), blank=True)
 
     def __str__(self):
         return self.full_name
