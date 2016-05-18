@@ -1,0 +1,20 @@
+{% extends 'authoring/article_detail.html' %}
+
+{% load bootstrap %}
+
+{% block heading %}
+Delete: {{ object.title }}, ID: {{ object.id }}
+{% endblock heading %}
+
+{% block action_link %}{% url 'authoring:articles_list' page=1 %}{% endblock action_link %}
+
+{% block content %}
+<div class="col-md-12">
+    <form action="">
+        <div class="row">
+            <h3>Are you sure that you wanna delete "{{ object.title }}" ?</h3>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>  
+</div>
+{% endblock content %}

@@ -7,7 +7,7 @@ Article: {{ object.title }}, ID: {{ object.id }}
 {% endblock heading %}
 
 {% block actions %}
-    <a href="{% url 'authoring:articles_list' page=1 %}" class="btn btn-default pull-right">
+    <a href="{% block action_link %}{% url 'authoring:articles_list' page=1 %}{% endblock action_link %}" class="btn btn-default pull-right">
         <span class="glyphicon glyphicon-chevron-left"></span> Back to list
     </a>
 {% endblock actions %}

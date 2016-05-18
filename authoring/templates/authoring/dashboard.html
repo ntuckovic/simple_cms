@@ -1,5 +1,9 @@
 {% extends 'master.html' %}
 
+{% block header_left %}
+    <a class="navbar-brand" href="{% url 'authoring:dashboard' %}">Simple CMS</a>
+{% endblock header_left %}
+
 {% block header_right %}
     <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'authoring:logout' %}">Logout</a></li>

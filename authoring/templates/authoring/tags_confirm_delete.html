@@ -1,0 +1,5 @@
+{% extends 'authoring/article_confirm_delete.html' %}
+
+{% load bootstrap %}
+
+{% block action_link %}{% url 'authoring:tags_list' page=1 %}{% endblock action_link %}

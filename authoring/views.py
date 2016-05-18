@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.urlresolvers import reverse
 
 from django.views.generic import ListView, \
-    TemplateView, CreateView
+    TemplateView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
 
 from content.models import Article, Tag, Category
@@ -62,6 +62,12 @@ class ArticleCreateView(AuthorDetailMixin, CreateView):
         return super(ArticleCreateView, self).form_valid(form)
 
 
+class ArticleDeleteView(AutoringLoginRequiredMixin, DeleteView):
+    template_name = 'authoring/article_confirm_delete.html'
+    success_url = '/authoring/articles/1/'
+    model = Article
+
+
 class TagsListView(AutoringLoginRequiredMixin, ListView):
     template_name = 'authoring/tags_list.html'
     model = Tag
@@ -84,6 +90,12 @@ class TagsCreateView(TagsDetailMixin, CreateView):
     template_name = 'authoring/tags_detail_new.html'
 
 
+class TagsDeleteView(AutoringLoginRequiredMixin, DeleteView):
+    template_name = 'authoring/tags_confirm_delete.html'
+    success_url = '/authoring/tags/1/'
+    model = Tag
+
+
 class CategoryListView(AutoringLoginRequiredMixin, ListView):
     template_name = 'authoring/category_list.html'
     model = Category
@@ -104,3 +116,9 @@ class CategoryUpdateView(CategoryDetailMixin, UpdateView):
 
 class CategoryCreateView(CategoryDetailMixin, CreateView):
     template_name = 'authoring/category_detail_new.html'
+
+
+class CategoryDeleteView(AutoringLoginRequiredMixin, DeleteView):
+    template_name = 'authoring/category_confirm_delete.html'
+    success_url = '/authoring/category/1/'
+    model = Category

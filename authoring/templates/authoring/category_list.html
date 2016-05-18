@@ -25,6 +25,11 @@
                         ----
                     {% endif %}
                 </td>
+                <td>
+                    <a href="{% url 'authoring:categories_delete' category.id %}" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </a>
+                </td>
             </tr>
             {% endfor %}
         </table>
