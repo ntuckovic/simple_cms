@@ -1,0 +1,17 @@
+{% extends 'content/frontpage.html' %}
+
+{% load bootstrap %}
+
+{% block main_content %}
+    <div class="col-md-6 col-md-offset-3">
+        <div class="row">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock main_content %}
