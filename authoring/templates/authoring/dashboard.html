@@ -4,6 +4,10 @@
     <a class="navbar-brand" href="{% url 'authoring:dashboard' %}">Simple CMS</a>
 {% endblock header_left %}
 
+{% block navigation_menu %}
+    {% include 'navigation_menu.html' with menu_items=menu_items active_menu_name=active_menu_name %}
+{% endblock navigation_menu %}
+
 {% block header_right %}
     <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'authoring:logout' %}">Logout</a></li>
@@ -13,24 +17,21 @@
 {% block main_content %}
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-12">
-                <ul>
-                    <li>
-                        <a href="{% url 'authoring:articles_list' page=1 %}">
-                            Articles
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'authoring:tags_list' page=1 %}">
-                            Tags
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'authoring:categories_list' page=1 %}">
-                            Categories
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Components</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            {% for item in menu_items %}
+                                <li class="list-group-item">
+                                    <a href='{% url item.url_key 1 %}'>
+                                        {{ item.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

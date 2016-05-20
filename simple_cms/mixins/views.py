@@ -52,3 +52,32 @@ class LogoutViewMixin(RedirectView):
         auth_logout(request)
 
         return super(LogoutViewMixin, self).get(request, *args, **kwargs)
+
+
+class MenuMixin(object):
+    def get_context_data(self, **kwargs):
+        context_data = super(MenuMixin, self).get_context_data(
+            **kwargs
+        )
+        context_data['menu_items'] = self.get_menu_settings()
+
+        return context_data
+
+    def get_menu_settings(self):
+        '''
+        override this method and return menu dict
+        '''
+
+        return []
+
+
+class ActiveItemMixin(object):
+    active_menu_name = None
+
+    def get_context_data(self, **kwargs):
+        context_data = super(ActiveItemMixin, self).get_context_data(
+            **kwargs
+        )
+        context_data['active_menu_name'] = self.active_menu_name
+
+        return context_data

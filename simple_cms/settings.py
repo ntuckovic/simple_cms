@@ -124,3 +124,20 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTHORING = {
+    'MENU_ITEMS': [
+        {
+            'name': 'Articles',
+            'url_key': 'authoring:articles_list'
+        },
+        {
+            'name': 'Tags',
+            'url_key': 'authoring:tags_list'
+        },
+        {
+            'name': 'Categories',
+            'url_key': 'authoring:categories_list'
+        }
+    ]
+}
