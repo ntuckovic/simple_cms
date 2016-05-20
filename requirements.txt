@@ -1,0 +1,12 @@
+Django==1.9.6
+Pillow==3.2.0
+argparse==1.2.1
+django-bootstrap-form==3.2.1
+django-model-utils==2.5
+django-redis-sessions==0.5.0
+django-websocket-redis==0.4.6
+gevent==1.1.1
+greenlet==0.4.9
+redis==2.10.5
+six==1.10.0
+wsgiref==0.1.2
